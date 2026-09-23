@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EntryList from '../components/EntryList.astro';
 import { getEntries } from '../lib/content';
-const [writing, caseStudies] = await Promise.all([getEntries('writing'), getEntries('caseStudies')]);
+const writing = await getEntries();
 ---
 
 <BaseLayout>
@@ -16,10 +16,6 @@ const [writing, caseStudies] = await Promise.all([getEntries('writing'), getEntr
 
   <section class="content-section" aria-labelledby="writing-title">
     <div class="section-heading"><h2 id="writing-title">Writing</h2><a href="/writing/">All writing <span aria-hidden="true">↗</span></a></div>
-    <EntryList entries={writing.slice(0, 3)} headingLevel="h3" emptyTitle="No articles yet." emptyDescription="Notes on systems, code, and the details that matter." />
-  </section>
-  <section class="content-section" aria-labelledby="studies-title">
-    <div class="section-heading"><h2 id="studies-title">Case studies</h2><a href="/case-studies/">All case studies <span aria-hidden="true">↗</span></a></div>
-    <EntryList entries={caseStudies.slice(0, 3)} headingLevel="h3" emptyTitle="No case studies yet." emptyDescription="A closer look at engineering problems and how I approached them." />
+    <EntryList entries={writing.slice(0, 3)} headingLevel="h3" emptyTitle="No posts yet." emptyDescription="Notes and case studies on systems, code, and the decisions behind them." />
   </section>
 </BaseLayout>

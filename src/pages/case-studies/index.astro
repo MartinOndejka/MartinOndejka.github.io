@@ -1,15 +1,16 @@
----
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import EntryList from '../../components/EntryList.astro';
-import { getEntries } from '../../lib/content';
-const entries = await getEntries('caseStudies');
----
-
-<BaseLayout title="Case studies" description="Engineering case studies by Martin Ondejka: context, constraints, technical decisions, and results.">
-  <header class="page-heading">
-    <p class="eyebrow">Problems & decisions</p>
-    <h1>Case studies<span class="accent">.</span></h1>
-    <p>A closer look at engineering problems, the tradeoffs behind a solution, and what came out of it.</p>
-  </header>
-  <div class="page-list"><EntryList entries={entries} emptyTitle="No case studies yet." /></div>
-</BaseLayout>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="0;url=/writing/" />
+    <meta name="robots" content="noindex" />
+    <meta name="description" content="Case studies and notes are now together in Writing." />
+    <link rel="canonical" href="https://martinondejka.github.io/writing/" />
+    <title>Writing · Martin Ondejka</title>
+  </head>
+  <body>
+    <h1>This page has moved.</h1>
+    <p><a href="/writing/">Continue to Writing</a></p>
+  </body>
+</html>

@@ -14,8 +14,4 @@ export const collections = {
     loader: glob({ pattern: '**/*.md', base: './src/content/writing', generateId: ({ entry }) => entry.replace(/\.md$/, '') }),
     schema,
   }),
-  caseStudies: defineCollection({
-    loader: glob({ pattern: '**/*.md', base: './src/content/case-studies', generateId: ({ entry }) => entry.replace(/\.md$/, '') }),
-    schema,
-  }),
 };

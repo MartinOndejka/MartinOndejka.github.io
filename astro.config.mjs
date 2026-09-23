@@ -5,7 +5,7 @@ export default defineConfig({
   site: 'https://martinondejka.github.io',
   output: 'static',
   trailingSlash: 'always',
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.endsWith('/case-studies/') })],
   markdown: {
     shikiConfig: {
       themes: { light: 'github-light', dark: 'github-dark' },

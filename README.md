@@ -22,7 +22,7 @@ npm run preview   # Serve the production output, which excludes drafts
 
 ## Write an article or case study
 
-Copy `templates/article.md` into `src/content/writing/`, or `templates/case-study.md` into `src/content/case-studies/`. Give it a lowercase, hyphenated filename such as `settlement-design.md`.
+Copy either `templates/article.md` or `templates/case-study.md` into `src/content/writing/`. Both formats share the same Writing section and publishing workflow; choose whichever template fits the post. Give it a lowercase, hyphenated filename such as `settlement-design.md`.
 
 ```yaml
 ---
@@ -33,7 +33,7 @@ draft: true
 ---
 ```
 
-The filename determines the address, for example `/writing/settlement-design/`. A nested file such as `rust/memory.md` becomes `/writing/rust/memory/`. Use ISO dates (`YYYY-MM-DD`); dates display consistently in UTC. Entries appear newest first, with the three most recent in each collection on the homepage.
+The filename determines the address, for example `/writing/settlement-design/`. A nested file such as `rust/memory.md` becomes `/writing/rust/memory/`. Use ISO dates (`YYYY-MM-DD`); dates display consistently in UTC. All posts appear newest first, with the three most recent on the homepage.
 
 The body supports standard Markdown, including headings, lists, links, tables, blockquotes, fenced code with language names, and images. Put public images in `public/images/` and reference them as `![Descriptive alternative text](/images/example.png)`. Use `##` for the first body heading: the title is already the page's `h1`.
 
@@ -47,7 +47,7 @@ Preview your draft with `npm run dev`. To publish, set `draft: false`, update th
 - Biography: `src/pages/about.astro`
 - Navigation, metadata, and footer: `src/layouts/BaseLayout.astro`
 - Layout, light/dark tokens, and article typography: `src/styles/global.css`
-- Collections and frontmatter validation: `src/content.config.ts`
+- Collection and frontmatter validation: `src/content.config.ts`
 - Theme selection: `public/theme.js`
 
 System appearance follows the device preference. Explicit light/dark choices are remembered locally. Reading and navigation work without JavaScript; the appearance control is shown only when its script can run.
@@ -56,8 +56,8 @@ System appearance follows the device preference. Explicit light/dark choices are
 
 The repository is `MartinOndejka/MartinOndejka.github.io`. Under **Settings → Pages → Build and deployment**, select **GitHub Actions** as the source. The workflow validates pull requests and deploys successful `main` builds using the official Astro and GitHub Pages actions. Track progress in the repository's Actions tab and the `github-pages` environment.
 
-The canonical origin is set in `astro.config.mjs`. This is a root user site, so it has no `/blog` base path. Sitemap files are generated during the build. GitHub Pages serves `dist/404.html` for unknown addresses.
+The canonical origin is set in `astro.config.mjs`. This is a root user site, so it has no `/blog` base path. Sitemap files are generated during the build. The former `/case-studies/` address redirects to `/writing/` and is excluded from the sitemap. GitHub Pages serves `dist/404.html` for unknown addresses.
 
 To undo a publication, revert the relevant commit and push the revert to `main`; the last successful deployment stays live if a later build fails.
 
-The site launches with empty writing and case-study collections. It contains no analytics, comments, CMS, or newsletter integration. Only public professional biography and profile links are included; private contact details and the CV PDF are not part of this repository.
+The site launches with one empty Writing collection for notes, articles, and case studies. It contains no analytics, comments, CMS, or newsletter integration. Only public professional biography and profile links are included; private contact details and the CV PDF are not part of this repository.

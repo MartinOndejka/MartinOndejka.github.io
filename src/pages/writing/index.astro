@@ -2,14 +2,14 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import EntryList from '../../components/EntryList.astro';
 import { getEntries } from '../../lib/content';
-const entries = await getEntries('writing');
+const entries = await getEntries();
 ---
 
-<BaseLayout title="Writing" description="Notes on distributed systems, Rust, and zero-knowledge rollups by Martin Ondejka.">
+<BaseLayout title="Writing" description="Notes and case studies on distributed systems, Rust, and zero-knowledge rollups by Martin Ondejka.">
   <header class="page-heading">
-    <p class="eyebrow">Notes & ideas</p>
+    <p class="eyebrow">Notes & case studies</p>
     <h1>Writing<span class="accent">.</span></h1>
-    <p>On systems, code, and the details that matter.</p>
+    <p>On systems, code, and the decisions behind them.</p>
   </header>
-  <div class="page-list"><EntryList entries={entries} emptyTitle="No articles yet." /></div>
+  <div class="page-list"><EntryList entries={entries} emptyTitle="No posts yet." /></div>
 </BaseLayout>
