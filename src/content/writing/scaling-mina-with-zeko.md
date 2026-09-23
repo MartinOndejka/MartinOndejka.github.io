@@ -1,13 +1,13 @@
 ---
 title: "Scaling Mina by putting Mina inside a zkApp"
 summary: "How we design Zeko to scale Mina with independent rollups, transaction SNARK reuse, sequencer auctions, and bridges for withdrawals and cross-shard transfers."
-date: 2023-03-24
+date: 2023-11-16
 draft: false
 ---
 
 Mina has a throughput problem. Its mainnet has capacity for roughly **one transaction per second**—a very small budget for a network of applications. The Mina Foundation describes the configured capacity as [0.5–1 TPS](https://minaprotocol.com/blog/mina-token-unlock-retrospective). Succinct verification makes the chain cheap to verify, but applications still compete for space in it.
 
-We are starting work on Zeko with a different place to put most of those transactions: independent ledgers that settle to Mina. Each ledger runs the familiar Mina transaction model, and a zkApp on L1 verifies proofs of its state transitions.
+We are working on Zeko with a different place to put most of those transactions: independent ledgers that settle to Mina. Each ledger runs the familiar Mina transaction model, and a zkApp on L1 verifies proofs of its state transitions.
 
 The part I find especially appealing is that Mina already contains the hardest component: a circuit that proves its transaction rules. We can reuse that work to put a Mina ledger inside a Mina smart contract. The [initial project plan](https://github.com/zeko-labs/zeko/blob/5891fb2c3089151235c841f7a154e4064469c7fc/README.md) starts from exactly this goal: reuse the ledger implementation and preserve the zkApp programming model.
 
@@ -200,6 +200,6 @@ Independent Mina-compatible ledgers give applications room to execute locally. R
 
 ---
 
-*This design account is dated to the [start of the project on March 24, 2023](https://github.com/zeko-labs/zeko/commit/5891fb2c3089151235c841f7a154e4064469c7fc). It brings together decisions developed over the project; the linked bridge and auction designs include subsequent work. The cross-shard flow describes a proposed extension.*
+*This design account is dated to [my rollup implementation work in November 2023](https://github.com/zeko-labs/zeko/commit/bf8b274774075ec0c274e60781adaccedd9a40ac). It brings together decisions developed over the project; the linked bridge and auction designs include subsequent work. The cross-shard flow describes a proposed extension.*
 
 *Further implementation reading, added later: [o1js-blobstream](https://o1js-blobstream.gitbook.io/o1js-blobstream) connects Celestia consensus and blob-inclusion proofs to Mina. Its [proving-system documentation](https://o1js-blobstream.gitbook.io/o1js-blobstream/proving-systems) covers both Groth16 verification infrastructure and the PLONK path used for its SP1 integration.*
