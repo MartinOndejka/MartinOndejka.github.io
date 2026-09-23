@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntryList from '../../components/EntryList.astro';
+import { getEntries } from '../../lib/content';
+const entries = await getEntries('caseStudies');
+---
+
+<BaseLayout title="Case studies" description="Engineering case studies by Martin Ondejka: context, constraints, technical decisions, and results.">
+  <header class="page-heading">
+    <p class="eyebrow">Problems & decisions</p>
+    <h1>Case studies<span class="accent">.</span></h1>
+    <p>A closer look at engineering problems, the tradeoffs behind a solution, and what came out of it.</p>
+  </header>
+  <div class="page-list"><EntryList entries={entries} emptyTitle="No case studies yet." /></div>
+</BaseLayout>

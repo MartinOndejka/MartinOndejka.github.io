@@ -1,0 +1,28 @@
+---
+import { entryUrl, formatDate, type Entry } from '../lib/content';
+
+interface Props {
+  entries: Entry[];
+  emptyTitle: string;
+  emptyDescription?: string;
+  headingLevel?: 'h2' | 'h3';
+}
+const { entries, emptyTitle, emptyDescription, headingLevel: Heading = 'h2' } = Astro.props;
+---
+
+{entries.length ? (
+  <ul class="entry-list">
+    {entries.map((entry) => (
+      <li>
+        <span class="entry-meta">
+          <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+          {entry.data.draft && <span class="draft-label"> · Draft preview</span>}
+        </span>
+        <Heading><a href={entryUrl(entry)}>{entry.data.title}</a></Heading>
+        <p>{entry.data.summary}</p>
+      </li>
+    ))}
+  </ul>
+) : (
+  <div class="empty-state"><p>{emptyTitle}</p>{emptyDescription && <p>{emptyDescription}</p>}</div>
+)}

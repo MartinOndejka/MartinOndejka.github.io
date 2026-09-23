@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+const {
+  title,
+  description = 'Notes and case studies on distributed systems, Rust, and zero-knowledge rollups by Martin Ondejka.',
+  noindex = false,
+} = Astro.props;
+const pageTitle = title ? `${title} · Martin Ondejka` : 'Martin Ondejka · Distributed Systems Engineer';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const navigation = [
+  { label: 'Writing', href: '/writing/' },
+  { label: 'Case Studies', href: '/case-studies/' },
+  { label: 'About', href: '/about/' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex, nofollow" /> : <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline src="/theme.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="wordmark" href="/" aria-label="Martin Ondejka, home">Martin Ondejka<span aria-hidden="true">.</span></a>
+        <nav aria-label="Main navigation">
+          {navigation.map(({ label, href }) => (
+            <a href={href} aria-current={Astro.url.pathname.startsWith(href) ? 'page' : undefined}>{label}</a>
+          ))}
+        </nav>
+      </header>
+      <main id="main" tabindex="-1">
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <div class="footer-main">
+          <span class="footer-name">© {new Date().getFullYear()} Martin Ondejka</span>
+          <div class="social-links">
+            <a href="https://github.com/MartinOndejka">GitHub</a>
+            <a href="https://www.linkedin.com/in/martin-ondejka/">LinkedIn</a>
+          </div>
+        </div>
+        <div class="appearance" data-theme-control hidden>
+          <label for="appearance">Appearance</label>
+          <select id="appearance" aria-label="Appearance">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
